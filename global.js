@@ -1,16 +1,29 @@
 /* Inicializa jQuery */
 $(document).ready(runApp);
 
+/* setup inicial do aplicativo */
+
+var app = {
+    name: 'Bullseye',                       // Nome do site
+    slogan: 'No alvo da sua carreira!',    // Slogan do site
+    sep: '~'                              // Separador do título
+}
+
 /* Aplicativo principal - Tratamento de eventos */
 function runApp() {
 
     // Monitora cliques nas tags <a> do documento
     $('a').click(routerLink);
 
+    // Título da página
+    setTitle();
+
 }
 
 // Processa cliques nas tags <a> do documento
 function routerLink() {
+
+    console.log('clicou');
 
     // Obtém atributo 'href' do link clicado
     var href = $(this).attr('href');
@@ -39,11 +52,14 @@ function routerLink() {
 // Carrega página à partir da rota
 function loadPage(pagePath) {
 
+    // Dividir a rota em partes para obter variáveis
+    var route = pagePath.split('?');
+
     // Objeto '{}' com caminhos da página
     var page = {
-        css: `pages/${pagePath}/index.css`,     // Caminho para CSS da página
-        html: `pages/${pagePath}/index.html`,   // Caminho para HTMl da página
-        js: `pages/${pagePath}/index.js`        // Caminho para JavaScript da página
+        css: `pages/${route[0]}/index.css`,     // Caminho para CSS da página
+        html: `pages/${route[0]}/index.html`,   // Caminho para HTMl da página
+        js: `pages/${route[0]}/index.js`,        // Caminho para JavaScript da página
     };
 
     // Carrega CSS da página em <style id="pageCSS"></style>
@@ -53,11 +69,32 @@ function loadPage(pagePath) {
         $('#pageHTML').load(page.html, () => {
 
             // Carrega na memória e executa o JavaScript logo após o HTML
-            $.getScript(page.js)
+            $.getScript(page.js, () => {
 
+                // Atualiza endereço da página
+                window.history.replaceState('', '', pagePath);
+
+            });
         });
     });
 
     return false;
+
+}
+
+// Processa o título da página. Tag <title>...</title>
+function setTitle(pageTitle = '') {
+
+    // Variável que armazena o título
+    var title;
+
+    // Se não definiu o título, usa o formato abaixo
+    if (pageTitle == '') title = `${app.name} ${app.sep} ${app.slogan}`;
+
+    // Se definiu o título, usa o formato abaixo
+    else title = `${app.name} ${app.sep} ${pageTitle}`;
+
+    // Reescreve  a tag <title>
+    $('title').text(title);
 
 }
