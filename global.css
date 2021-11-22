@@ -251,6 +251,8 @@ main > div {
   margin: var(--margin);
   position: relative;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 main article,
@@ -262,11 +264,15 @@ main aside {
   margin: 0 0.5rem 0.5rem 0.5rem;
 }
 
+main article {
+  flex-grow: 1;
+}
+
 /* Conteúdo em larguras maiores */
 
 @media (min-width: 768px) {
   main > div {
-    display: flex;
+   flex-direction: row;
   }
 
   main article {
