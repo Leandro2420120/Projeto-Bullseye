@@ -13,4 +13,13 @@ function runHome() {
 
     setTitle();
 
+    db.collection("articles")
+    .onSnapshot((querySnapshot) => {
+        
+        querySnapshot.forEach((doc) => {
+        
+        });
+        console.log("Current cities in CA: ", cities.join(", "));
+    });
+
 }

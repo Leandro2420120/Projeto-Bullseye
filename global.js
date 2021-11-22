@@ -7,15 +7,15 @@
  * Aplicativo principal.
  */
 
-/* Inicializa jQuery */
-$(document).ready(runApp);
-
 // Setup inicial do aplicativo
 var app = {
     name: 'Bullseye',                       // Nome do site
     slogan: 'No alvo da sua carreira!',     // Slogan do site
     sep: '~'                                // Separador do título
 }
+
+/* Inicializa jQuery */
+$(document).ready(runApp);
 
 // Aplicativo principal - Tratamento de eventos
 function runApp() {
