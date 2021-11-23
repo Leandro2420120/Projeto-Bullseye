@@ -104,3 +104,24 @@ function setTitle(pageTitle = '') {
     $('title').text(title);
 
 }
+
+// Limpa caracteres perigosos das strings
+function sanitizeString(badString, stripHTML = true) {
+
+    // Remove espaços em excesso da string
+    goodString = badString.trim();
+
+    // Retorna a string sanitizada
+    return goodString;
+}
+
+// Gera a data atual em formato system date "YYYY-MM-DD HH:II:SS"
+function getSystemDate() {
+    var yourDate = new Date(); // Obtém a data atual do navegador
+    var offset = yourDate.getTimezoneOffset(); // Obtém o fusohorário
+    yourDate = new Date(yourDate.getTime() - offset * 60 * 1000); // Ajusta o fusohorário
+    returnDate = yourDate.toISOString().split("T"); // Separa data da hora
+    returnTime = returnDate[1].split("."); // Separa partes da data
+    return `${returnDate[0]} ${returnTime[0]}`; // Formata data como system date
+  }
+

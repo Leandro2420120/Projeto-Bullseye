@@ -7,7 +7,7 @@
  * Folhas de estilo da página 'home'
  */
 
- .articles>h2 {
+.articles>h2 {
     padding-bottom: 0.2rem;
     border-bottom: var(--dotted-border);
 }
