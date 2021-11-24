@@ -1,17 +1,17 @@
 /**
- * contacts/index.js
+ * license/index.js
  * 
  * Created by André Luferat → http://www.luferat.net/
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  * 
- * Controller da página 'contacts'.
+ * Controller da página 'license'.
  */
 
-$(document).ready(runContacts);
+$(document).ready(runLicense);
 
-function runContacts() {
+function runLicense() {
 
     // Título da página
-    setTitle('Faça Contato');
+    setTitle('Licença');
 
 }

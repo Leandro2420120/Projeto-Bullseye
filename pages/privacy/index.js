@@ -1,17 +1,17 @@
 /**
- * contacts/index.js
+ * privacy/index.js
  * 
  * Created by André Luferat → http://www.luferat.net/
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  * 
- * Controller da página 'contacts'.
+ * Controller da página 'privacy'.
  */
 
-$(document).ready(runContacts);
+$(document).ready(runPrivacy);
 
-function runContacts() {
+function runPrivacy() {
 
     // Título da página
-    setTitle('Faça Contato');
+    setTitle('Sua privacidade');
 
 }

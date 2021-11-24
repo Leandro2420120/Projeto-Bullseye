@@ -1,17 +1,17 @@
 /**
- * contacts/index.js
+ * profile/index.js
  * 
  * Created by André Luferat → http://www.luferat.net/
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  * 
- * Controller da página 'contacts'.
+ * Controller da página 'profile'.
  */
 
-$(document).ready(runContacts);
+$(document).ready(runPtofile);
 
-function runContacts() {
+function runPtofile() {
 
     // Título da página
-    setTitle('Faça Contato');
+    setTitle('Seu perfil');
 
 }
