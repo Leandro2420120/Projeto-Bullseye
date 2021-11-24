@@ -270,6 +270,11 @@ main article {
   flex-grow: 1;
 }
 
+article h2:first-child {
+  padding-bottom: 0.2rem;
+  border-bottom: var(--dotted-border);
+}
+
 /* Conteúdo em larguras maiores */
 
 @media (min-width: 768px) {
@@ -295,7 +300,10 @@ main article {
   text-align: center;
 }
 
-article h2:first-child {
-  padding-bottom: 0.2rem;
-  border-bottom: var(--dotted-border);
+.small {
+  font-size: small;
+}
+
+.red {
+  color: red;
 }

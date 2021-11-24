@@ -20,14 +20,6 @@ function runView() {
     // Obtém o Id do artigo
     var articleId = sanitizeString(location.search.replace('?', ''));
 
-    // Obtém o artigo completo, conforme o Id
-    getArticle(articleId);
-
-}
-
-// Lê artigo completo do Firestore
-function getArticle(articleId) {
-
     // Obtém o documento do artigo
     db.collection('articles').doc(articleId).get()
 

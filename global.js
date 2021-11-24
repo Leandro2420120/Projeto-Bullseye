@@ -21,7 +21,7 @@ $(document).ready(runApp);
 function runApp() {
 
     // Página inicial
-    loadPage('home');
+    loadPage('contacts');
 
     // Monitora cliques nas tags <a> do documento
     $('a').click(routerLink);
@@ -105,14 +105,14 @@ function setTitle(pageTitle = '') {
 
 }
 
-// Limpa caracteres perigosos das strings
-function sanitizeString(badString, stripHTML = true) {
+// Sanitiza campos de formulário
+function sanitizeString(stringValue, stripTags = true) {
 
-    // Remove espaços em excesso da string
-    goodString = badString.trim();
+    // Remove todas as tags HTML
+    if (stripTags) stringValue = stringValue.replace(/<[^>]*>?/gm, "");
 
-    // Retorna a string sanitizada
-    return goodString;
+    // Quebras de linha viram <br>
+    return stringValue.replace(/\n/g, "<br />").trim();
 }
 
 // Gera a data atual em formato system date "YYYY-MM-DD HH:II:SS"
