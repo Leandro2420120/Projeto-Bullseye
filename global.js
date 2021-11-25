@@ -112,7 +112,10 @@ function sanitizeString(stringValue, stripTags = true) {
     if (stripTags) stringValue = stringValue.replace(/<[^>]*>?/gm, "");
 
     // Quebras de linha viram <br>
-    return stringValue.replace(/\n/g, "<br />").trim();
+    stringValue = stringValue.replace(/\n/g, "<br />").trim();
+
+    // Remove espaços antes e depois
+    return stringValue.trim();
 }
 
 // Gera a data atual em formato system date "YYYY-MM-DD HH:II:SS"
