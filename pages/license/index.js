@@ -7,7 +7,8 @@
  * Controller da página 'license'.
  */
 
-$(document).ready(runLicense);
+// (*) Reload prevent
+loadedScript['license'] = true;
 
 function runLicense() {
 

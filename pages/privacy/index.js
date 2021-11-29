@@ -7,7 +7,8 @@
  * Controller da página 'privacy'.
  */
 
-$(document).ready(runPrivacy);
+// (*) Reload prevent
+loadedScript['privacy'] = true;
 
 function runPrivacy() {
 

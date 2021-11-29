@@ -7,7 +7,8 @@
  * Controller da página 'home'.
  */
 
-$(document).ready(runHome);
+// (*) Reload prevent
+loadedScript['home'] = true;
 
 function runHome() {
 

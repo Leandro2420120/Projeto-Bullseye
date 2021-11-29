@@ -7,9 +7,10 @@
  * Controller da página 'logout'.
  */
 
-$(document).ready(runAbout);
+// (*) Reload prevent
+loadedScript['logout'] = true;
 
-function runAbout() {
+function runLogout() {
 
     // Título da página
     setTitle('Sair / Logout');

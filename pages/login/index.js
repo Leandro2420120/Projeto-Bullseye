@@ -7,9 +7,10 @@
  * Controller da página 'license'.
  */
 
-$(document).ready(runLogout);
+// (*) Reload prevent
+loadedScript['login'] = true;
 
-function runLogout() {
+function runLogin() {
 
     // Título da página
     setTitle('Entrar / Login');

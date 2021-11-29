@@ -7,7 +7,8 @@
  * Controller da página 'about'.
  */
 
-$(document).ready(runAbout);
+// (*) Reload prevent
+loadedScript['about'] = true;
 
 function runAbout() {
 

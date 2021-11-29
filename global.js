@@ -14,6 +14,9 @@ var app = {
     sep: '~'                                // Separador do título
 }
 
+// (*) Evita reload dos scripts
+var loadedScript = {};
+
 /* Inicializa jQuery */
 $(document).ready(runApp);
 
@@ -21,11 +24,10 @@ $(document).ready(runApp);
 function runApp() {
 
     // Página inicial
-    loadPage('contacts');
+    loadPage('home');
 
     // Monitora cliques nas tags <a> do documento
     $('a').click(routerLink);
-
 }
 
 // Processa cliques nas tags <a> do documento
@@ -68,24 +70,32 @@ function loadPage(pagePath) {
         js: `pages/${route[0]}/index.js`,        // Caminho para JavaScript da página
     };
 
-    // Carrega CSS da página em <style id="pageCSS"></style>
-    $('#pageCSS').load(page.css, () => {
+    // (*) Carrega JavaScript da página se ele não existe
+    if (!loadedScript[route[0]]) {
+        $.getScript(page.js, () => {
 
-        // Carrega o HTML em <div id="pageHTML"></div> logo após o CSS
-        $('#pageHTML').load(page.html, () => {
+            // Carrega CSS
+            $('#pageCSS').load(page.css, () => {
 
-            // Carrega na memória e executa o JavaScript logo após o HTML
-            $.getScript(page.js, () => {
-
-                // Atualiza endereço da página
-                window.history.replaceState('', '', pagePath);
-
+                // Carrega o HTML em <div id="pageHTML"></div> logo após o CSS
+                $('#pageHTML').load(page.html);
             });
         });
-    });
+
+        // Se Javascript da página existe carrega somente HTML e CSS da página
+    } else {
+        // Carrega CSS da página em <style id="pageCSS"></style>
+        $('#pageCSS').load(page.css, () => {
+
+            // Carrega o HTML em <div id="pageHTML"></div> logo após o CSS
+            $('#pageHTML').load(page.html);
+        });
+    }
+
+    // Atualiza endereço da página
+    window.history.replaceState('', '', pagePath);
 
     return false;
-
 }
 
 // Processa o título da página. Tag <title>...</title>

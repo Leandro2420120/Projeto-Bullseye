@@ -7,10 +7,8 @@
  * Controller da página 'view'.
  */
 
-$(document).ready(runView);
-
-// Armazena a view do artigo
-var artView = '';
+// (*) Reload prevent
+loadedScript['view'] = true;
 
 function runView() {
 
@@ -32,15 +30,13 @@ function runView() {
                 // Armazena documento em 'art'
                 var art = doc.data();
 
-                console.log("--");
-
                 // Título da página
                 setTitle(art.title);
 
                 // Converte data para Br
                 var brDate = getBrDate(art.date);
 
-                artView += `
+                var artView = `
 <h2>${art.title}</h2>
 <small class="author-date">Por ${art.author} em ${brDate}.</small>
 <div class="content">${art.text}</div>

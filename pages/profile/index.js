@@ -7,9 +7,10 @@
  * Controller da página 'profile'.
  */
 
-$(document).ready(runPtofile);
+// (*) Reload prevent
+loadedScript['profile'] = true;
 
-function runPtofile() {
+function runProfile() {
 
     // Título da página
     setTitle('Seu perfil');

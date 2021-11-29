@@ -7,7 +7,8 @@
  * Controller da página 'contacts'.
  */
 
-$(document).ready(runContacts);
+// (*) Reload prevent
+loadedScript['contacts'] = true;
 
 function runContacts() {
 
