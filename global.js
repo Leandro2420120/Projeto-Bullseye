@@ -27,7 +27,35 @@ function runApp() {
     loadPage('home');
 
     // Monitora cliques nas tags <a> do documento
-    $('a').click(routerLink);
+    $(document).on('click', 'a', routerLink);
+
+    // Observador de usuários
+    firebase.auth().onAuthStateChanged((user) => {
+
+        // Aponta para link de autenticação no menu
+        var appUser = $('#appUser');
+
+        // Se um usuário está logado
+        if (user) {
+
+            // Exibe a imagem do usuário no menu
+            appUser.html(`<img src="${user.photoURL}" alt="${user.displayName}"><span>Perfil</span>`);
+
+            // Troca a função do botão login para profile
+            appUser.attr('href', 'profile');
+
+            // Se não tem usuário logado
+        } else {
+
+            // Remove a imagem do usuário no menu
+            appUser.html(`<img src="assets/user.png" alt="Logue-se"><span>Entrar</span>`);
+
+            // Troca a função do botão profile para login
+            appUser.attr('href', 'login');
+        }
+
+    });
+
 }
 
 // Processa cliques nas tags <a> do documento
@@ -37,6 +65,7 @@ function routerLink() {
     var href = $(this).attr('href');
 
     // Obtém atributo 'target' do link clicado
+    // Se não tem 'target' fica 'undefined'
     var target = $(this).attr('target');
 
     // Se 'href' está vazio ou não existe (undefined), não faz nada
@@ -49,6 +78,18 @@ function routerLink() {
         target === '_blank' ||              // Se o 'target' é '_blank' ou
         href.substr(0, 1) === '#'           // Se é uma âncora
     ) return true;                          // Retorna o controla para o HTML
+
+    // Se é login
+    if (href == 'login') {
+        login();
+        return false;
+    }
+
+    // Se é logout
+    if (href == 'forcelogout') {
+        logout();
+        return false;
+    }
 
     // Se é uma rota, chama a função 'loadPage', passando a rota
     loadPage(href);
@@ -143,4 +184,40 @@ function getBrDate(dateString, separator = ' às ') {
     var p1 = dateString.split(" "); // Separa data e hora
     var p2 = p1[0].split("-"); // Separa partes da data
     return `${p2[2]}/${p2[1]}/${p2[0]}${separator}${p1[1]}`; // Remonta partes da data e hora
+}
+
+// Login de usuários
+function login() {
+
+    // Define o provedor de autenticação --> Google
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    // Inicia processo de autenticação
+    firebase.auth()
+        .signInWithPopup(provider)
+
+        // Se der certo
+        // .then()
+
+        // Se der errado
+        .catch((error) => {
+
+            // Exibe mensagem de erro no console
+            console.error(`Oooops! Algo deu errado: ${error}`);
+        });
+
+}
+
+// Logout de usuários
+function logout() {
+    firebase.auth().signOut()
+    .then(() => {
+        loadPage('home');
+    })
+    .catch((error) => {
+
+        // Exibe mensagem de erro no console
+        console.error(`Oooops! Algo deu errado: ${error}`);
+    });
+    return false;
 }

@@ -18,6 +18,8 @@ function runContacts() {
     // Detecta envio do formulário
     $('#contact').submit(sendForm);
 
+    // Detecta se usuário está logado
+    firebase.auth().onAuthStateChanged(isLogged);
 }
 
 function sendForm() {
@@ -68,9 +70,8 @@ function sendForm() {
                 $('#feedback').show(0);
 
                 // Apagar campos do formulário
-                for (let key in contact) {
-                    $(`#contact-${key}`).val('');
-                }
+                $(`#contact-subject`).val('');
+                $(`#contact-message`).val('');
             });
         })
 
@@ -81,4 +82,18 @@ function sendForm() {
 
     // Não faz mais nada
     return false;
+}
+
+// Detecta se usuário está logado
+function isLogged(user) {
+    if (user) {
+
+        // Mostra nome do usuário no campo nome
+        $('#contact-name').val(user.displayName);
+
+        // Mostra email do usuário no campo email
+        $('#contact-email').val(user.email);
+
+    }
+
 }
