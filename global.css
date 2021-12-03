@@ -7,7 +7,8 @@
 :root {
   --background-color: purple;
   --background-image: url("assets/background_1080_720_purple.jpg");
-  --font-family: sans-serif; /* Windows: arial, helvetica, tahoma, verdana */
+  --font-family: sans-serif;
+  /* Windows: arial, helvetica, tahoma, verdana */
   --min-width: 280px;
   --max-width: 1024px;
   --margin: auto;
@@ -30,7 +31,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--font-family);
-  font-size: 16px; /* Tamanho da letra "M" --> unidade de CSS "rem" --> .5rem = 8px, 1rem = 16px, 2rem = 32px, ... */
+  font-size: 16px;
+  /* Tamanho da letra "M" --> unidade de CSS "rem" --> .5rem = 8px, 1rem = 16px, 2rem = 32px, ... */
 }
 
 h1,
@@ -51,6 +53,11 @@ a {
 a:hover {
   text-decoration: underline;
   color: orangered;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
 }
 
 /* Fundo do aplicativo responsivo */
@@ -90,7 +97,7 @@ header h1 {
 
 /* Menu principal */
 
-nav > div {
+nav>div {
   min-width: var(--min-width);
   max-width: var(--max-width);
   margin: var(--margin);
@@ -138,6 +145,7 @@ nav img {
   margin: auto;
   width: 2rem;
   height: 2rem;
+  border-radius: 50%;
 }
 
 /* Rodapé superior */
@@ -149,7 +157,7 @@ nav img {
   border-bottom: var(--dotted-border);
 }
 
-.footer-top > div {
+.footer-top>div {
   min-width: var(--min-width);
   max-width: var(--max-width);
   margin: var(--margin);
@@ -194,7 +202,7 @@ nav img {
   border-bottom: var(--dotted-border);
 }
 
-.footer-botton > div {
+.footer-botton>div {
   min-width: var(--min-width);
   max-width: var(--max-width);
   margin: var(--margin);
@@ -226,7 +234,7 @@ nav img {
 /* Rodapé em telas maiores */
 
 @media (min-width: 425px) {
-  .footer-botton > div {
+  .footer-botton>div {
     justify-content: space-around;
     padding: 1rem;
   }
@@ -245,12 +253,14 @@ main {
 
 /* Conteúdo */
 
-main > div {
+main>div {
   min-width: var(--min-width);
   max-width: var(--max-width);
   margin: var(--margin);
   position: relative;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 main article,
@@ -262,11 +272,20 @@ main aside {
   margin: 0 0.5rem 0.5rem 0.5rem;
 }
 
+main article {
+  flex-grow: 1;
+}
+
+article h2:first-child {
+  padding-bottom: 0.2rem;
+  border-bottom: var(--dotted-border);
+}
+
 /* Conteúdo em larguras maiores */
 
 @media (min-width: 768px) {
-  main > div {
-    display: flex;
+  main>div {
+    flex-direction: row;
   }
 
   main article {
@@ -279,4 +298,67 @@ main aside {
     min-width: 200px;
     max-width: 200px;
   }
+}
+
+/* Classes de uso geral */
+
+.text-center {
+  text-align: center;
+}
+
+.small {
+  font-size: small;
+}
+
+.red {
+  color: red;
+}
+
+/* Botões */
+.btn {
+  text-align: center;
+  padding: .65rem 1rem;
+  font-weight: bold;
+  color: white;
+  border-radius: .35rem;
+  font-size: 1.1rem;
+  border: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-block {
+  display: block;
+  margin: 1rem 0;
+}
+
+.btn-400 {
+  display: block;
+  width: 400px;
+  margin: 1rem auto;
+}
+
+.btn-inline {
+  font-size: .9rem;
+  padding: .25rem .5rem;
+  font-weight: normal !important;
+}
+
+.btn-primary {
+  background: steelblue;
+}
+
+.btn-primary:hover {
+  background: rgb(36, 66, 90);
+}
+
+.btn-warning {
+  background: orangered;
+}
+
+.btn-warning:hover {
+  background: rgb(77, 20, 0);
 }

@@ -1,18 +1,18 @@
 /**
- * about/index.js
+ * login/index.js
  * 
  * Created by André Luferat → http://www.luferat.net/
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  * 
- * Controller da página 'about'.
+ * Controller da página 'license'.
  */
 
 // (*) Reload prevent
-loadedScript['about'] = true;
+loadedScript['login'] = true;
 
-function runAbout() {
+function runLogin() {
 
     // Título da página
-    setTitle('Sobre...');
+    setTitle('Entrar / Login');
 
 }
