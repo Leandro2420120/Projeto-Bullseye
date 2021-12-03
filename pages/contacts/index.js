@@ -93,7 +93,5 @@ function isLogged(user) {
 
         // Mostra email do usuário no campo email
         $('#contact-email').val(user.email);
-
     }
-
 }
