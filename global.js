@@ -23,6 +23,11 @@ $(document).ready(runApp);
 // Aplicativo principal - Tratamento de eventos
 function runApp() {
 
+    // Oculta splash screen após alguns segundos
+    // setTimeout(() => {
+    //     $('#splashScreen').fadeOut('fast');
+    // }, 1000);
+
     // Página inicial
     loadPage('home');
 
@@ -53,6 +58,11 @@ function runApp() {
             // Troca a função do botão profile para login
             appUser.attr('href', 'login');
         }
+
+        // Oculta splash screen quando autenticação ocorrer
+        setTimeout(() => {
+            $('#splashScreen').fadeOut('fast');
+        }, 500);
 
     });
 
@@ -211,13 +221,13 @@ function login() {
 // Logout de usuários
 function logout() {
     firebase.auth().signOut()
-    .then(() => {
-        loadPage('home');
-    })
-    .catch((error) => {
+        .then(() => {
+            loadPage('home');
+        })
+        .catch((error) => {
 
-        // Exibe mensagem de erro no console
-        console.error(`Oooops! Algo deu errado: ${error}`);
-    });
+            // Exibe mensagem de erro no console
+            console.error(`Oooops! Algo deu errado: ${error}`);
+        });
     return false;
 }
